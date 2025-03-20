@@ -1,0 +1,5 @@
+No. 3 A : Mom, look at these cards. It’s information about four new students in our school. One of them, Jun, is going to join our class.
+B : That sounds great. Which boy is Jun?
+A : Mom, Jun is a girl. She is the tallest of the four. Her favorite sport is soccer.
+B : I see.
+Question : Which student is Jun?

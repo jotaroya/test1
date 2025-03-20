@@ -1,0 +1,6 @@
+No. 3
+A : How many students are there in your class, Kyoko?
+B : There are 30 students.
+A : I see. How many boys and girls are there?
+B : There are 13 boys and 17 girls. Oh, last week a new boy joined our class, so now we have 31 students.
+Question : How many students are there in Kyoko’s class now?

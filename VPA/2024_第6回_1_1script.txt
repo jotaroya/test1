@@ -1,0 +1,5 @@
+No.1
+A: This is for you, Emily.
+B: Oh, thank you, Ken. Why did you choose this?
+A: It will be helpful when you cook.
+Question: What did Ken give to Emily?

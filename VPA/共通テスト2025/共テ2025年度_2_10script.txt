@@ -1,0 +1,6 @@
+問10  
+M: Did you say you wanted the one with the rainbow design?  
+W: No, the kind with the sunshine mark.  
+M: The bottle or the box?  
+W: Whichever is cheaper.  
+Question: Which item will the man buy?  

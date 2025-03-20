@@ -1,0 +1,5 @@
+No.2
+A: Dad, can you take me to the station tomorrow?
+B: O.K. What time will your train leave?
+A: At seven forty. But I’ll meet Yuka at seven thirty there. So we need to leave home twenty minutes before that.
+Question: What time will they leave home tomorrow?

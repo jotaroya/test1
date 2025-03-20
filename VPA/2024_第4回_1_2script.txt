@@ -1,0 +1,4 @@
+A : It was Sunday, yesterday. What did you eat for lunch yesterday, Akiko?  
+B : I usually eat curry and rice with my family, but yesterday, I cooked spaghetti and we ate it together. We had some cherries, too.  
+A : That sounds delicious.  
+Question : What did Akiko eat for lunch yesterday?

@@ -1,0 +1,5 @@
+A : Oh, no! Our bus has just left. We have to wait for the next bus. How long do we have to wait?  
+B : Look at this, Bob. We have to wait for twenty minutes.  
+A : Can we still take the train leaving at eight thirty-five?  
+B : Don’t worry. I think we can take the train because our bus will get there at eight thirty.  
+Question : Where are they going by bus?

@@ -1,0 +1,5 @@
+No. 1  
+A : I went to bed at eleven last night. I’m sleepy, Emily.  
+B : That’s late, Shota. I went to bed at ten.  
+A : I usually go to bed at nine, but I had a lot of homework to do yesterday.  
+Question : What time did Shota go to bed yesterday?

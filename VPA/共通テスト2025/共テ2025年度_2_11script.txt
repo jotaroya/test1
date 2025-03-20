@@ -1,0 +1,6 @@
+問11  
+W: Shall we take the ocean-view route?  
+M: But we have to pick up Josh at the station. And we need gas, too.  
+W: What about groceries?  
+M: No, we’re fine.  
+Question: Which route will they probably take?

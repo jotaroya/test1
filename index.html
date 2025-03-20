@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>道リス（道コンリスニング）</title>
+  <style>
+    /* 全体のスタイル */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+    .scene {
+      padding: 20px;
+      display: none;
+    }
+    #topScene {
+      display: block;
+    }
+    h1, h2 {
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    /* トップ画面上部情報 */
+    #topHeader {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+    /* クレジットボタン */
+    #creditButton {
+      font-size: 14px;
+      padding: 5px 10px;
+    }
+    /* 単元ボタン（既存） */
+    #unitButtons button {
+      margin: 5px;
+    }
+    /* ボーナスセクション（共テはトップ画面にのみ表示） */
+    #bonusSection {
+      position: fixed;
+      bottom: 10px;
+      width: 90%;
+    }
+    #bonusSection p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    #bonusSection button {
+      padding: 5px 10px;
+      font-size: 14px;
+      margin: 5px;
+    }
+    /* クレジット画面 */
+    #creditScene {
+      text-align: left;
+    }
+    #creditScene p {
+      margin: 5px;
+    }
+    /* フッター */
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      font-size: 12px;
+      color: #aaa;
+    }
+    /* クイズシーン用の各要素 */
+    #questionImage, #explanationImage {
+      max-width: 90%;
+      height: auto;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+    /* 音声操作用のスタイル */
+    #audioControls button {
+      margin: 5px;
+    }
+    #progressContainer {
+      width: 80%;
+      height: 20px;
+      background-color: #ccc;
+      margin: auto;
+      margin-top: 10px;
+    }
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background-color: #4CAF50;
+    }
+    #answerButtons button {
+      margin: 5px;
+    }
+    #feedback {
+      margin-top: 15px;
+    }
+    #scriptContainer {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 20px;
+      text-align: left;
+      white-space: pre-wrap;
+    }
+    /* NEW: 音声ファイル名表示 */
+    #voiceFilename {
+      font-size: 10px;
+      color: #aaa;
+      margin-top: 5px;
+    }
+    /* 下部コントロール */
+    #bottomRow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    /* 上段：速度変更UI */
+    #speedControlContainer {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    #slowDownButton, #speedUpButton {
+      font-size: 10px;
+      padding: 6px 8px;
+    }
+    /* 速度バー全体 */
+    #speedBarContainer {
+      position: relative;
+      width: 100px;
+      height: 20px;
+      background-color: #ccc;
+      margin: 0 10px;
+      border-radius: 10px;
+    }
+    /* 速度バーの背景 */
+    #speedBarBackground {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: #000;
+      transform: translateY(-50%);
+      border-radius: 2px;
+    }
+    /* 速度ノブ */
+    #speedKnob {
+      position: absolute;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      background-color: #000;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+    /* 速度ラベル */
+    #speedLabel {
+      position: absolute;
+      top: -20px;
+      width: 100%;
+      text-align: center;
+      font-size: 10px;
+      color: #000;
+    }
+    /* 下段：操作ボタン */
+    #controlButtonsRow {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    #controlButtonsRow button {
+      font-size: 16px;
+      padding: 8px 12px;
+    }
+  </style>
+</head>
+<body>
+  <!-- トップシーン -->
+  <div id="topScene" class="scene">
+    <div id="topHeader">
+      <!-- <p>制作Yamamoto 2025/02/15 Ver2.5（共テ2025年度追加）</p> -->
+      <!-- <button id="creditButton">更新履歴・クレジット</button> -->
+    </div>
+    <h1>&#x1f43f; 道リス &#x1f43f;</h1>
+    <div id="unitButtons">
+      <!-- 既存の単元 -->
+      <button id="unit0Button">2022_第1回</button>
+      <button id="unit9Button">2022_第3回</button>
+      <button id="unit1Button">2023_第1回</button>
+      <button id="unit2Button">2023_第2回</button>
+      <button id="unit3Button">2023_第3回</button>
+      <button id="unit4Button">2023_第4回</button>
+      <button id="unit5Button">2024_第1回</button>
+      <button id="unit6Button">2024_第2回</button>
+      <button id="unit7Button">2024_第3回</button>
+      <button id="unit8Button">2024_第4回</button>
+      <button id="unit14Button">2024_第6回【24F】</button>
+
+    </div>
+    <!-- 共テ単元ボタンはトップ画面のみ -->
+    <div id="bonusSection">
+      <p>制作 Yamamoto
+      <button id="creditButton">更新履歴etc.</button></p>
+      <p>【大学入試】共通テスト2025年度</p>
+      <p><button id="unit10Button">1A</button>
+      <button id="unit11Button">1B</button>
+      <button id="unit12Button">2</button>
+      <button id="unit13Button">3</button></p>
+      <p>※バグ多めです。バグが起こったらページを再読み込みしてください。</p>
+    </div>
+  </div>
+
+  <!-- 問題選択シーン（既存単元用） -->
+  <div id="questionSelectionScene" class="scene">
+    <h2>大問を選択してください</h2>
+    <button id="selectSet1Button">問1</button>
+    <button id="selectSet2Button">問2</button>
+  </div>
+
+  <!-- 説明画面 -->
+  <div id="explanationScene" class="scene">
+    <h2>大問の説明</h2>
+    <img id="explanationImage" src="" alt="大問の説明">
+    <br>
+    <button id="startQuizButton">クイズ開始</button>
+  </div>
+
+  <!-- クイズシーン -->
+  <div id="quizScene" class="scene">
+    <div id="questionContainer">
+      <img id="questionImage" src="" alt="問題画像">
+      <br>
+      <div id="audioControls">
+        <button id="rewind3">3秒前</button>
+        <button id="playPauseButton">再生</button>
+        <button id="forward3">3秒後</button>
+        <button id="restartAudio">音声最初へ</button>
+      </div>
+      <div id="progressContainer">
+        <div id="progressBar"></div>
+      </div>
+      <div id="voiceFilename"></div>
+      <div id="answerButtons">
+        <!-- 既存単元は初期は「ア, イ, ウ, エ」；新規単元は loadQuestion で上書き -->
+        <button class="answerButton" data-answer="ア">ア</button>
+        <button class="answerButton" data-answer="イ">イ</button>
+        <button class="answerButton" data-answer="ウ">ウ</button>
+        <button class="answerButton" data-answer="エ">エ</button>
+      </div>
+      <div id="feedback" style="display: none; font-size: 24px; font-weight: bold;"></div>
+      <div id="scriptContainer" style="display: none;"></div>
+    </div>
+    <!-- 下部コントロール -->
+    <div id="bottomRow">
+      <div id="speedControlContainer">
+        <button id="slowDownButton">遅</button>
+        <div id="speedBarContainer">
+          <div id="speedBarBackground"></div>
+          <div id="speedKnob"></div>
+          <div id="speedLabel">1.0倍</div>
+        </div>
+        <button id="speedUpButton">速</button>
+      </div>
+      <div id="controlButtonsRow">
+        <button id="backToTopButton">トップへ</button>
+        <button id="showAnswerButton" disabled style="opacity: 0.5;">解答を表示</button>
+        <button id="nextQuestionButton" disabled style="opacity: 0.5;">次の問題へ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- リザルトシーン -->
+  <div id="resultScene" class="scene">
+    <h2>リザルト</h2>
+    <div id="resultDetails"></div>
+    <p id="finalScore"></p>
+    <p style="font-size: 12px; color: #aaa;">学習記録を講師に見せる場合スクリーンショットを保存してください</p>
+    <button id="resultBackButton">トップへ戻る</button>
+  </div>
+
+  <!-- クレジットシーン -->
+  <div id="creditScene" class="scene">
+    <h2>更新履歴・クレジット</h2>
+    <p>2025/02/15: Ver2.50（共テ2025年度追加）</p>
+    <p>2025/02/15: Ver2.10（2022_第3回追加）</p>
+    <p>2025/02/13: Ver2.00（問題追加、再生速度変更機能！）</p>
+    <p>2025/02/11: Ver1.00（2023年4回,2024年4回分問題用意）</p>
+    <p>2025/02/09: Ver0.20（TEST版）</p>
+    <p>不具合等あれば、学習空間 旭川エリア 山本まで</p>
+    <p>素材など北海道各エリアの方々に感謝</p>
+    <p></p>
+    <p>【放置しているバグ】（いつか直したいが内部システム上難しそう）</p>
+    <p>・大学入試編からトップへボタンでトップ画面に戻ったあとに高校入試の方に行くと大学入試の問題が出題される</p>
+    <button id="creditBackButton">トップ画面へ戻る</button>
+  </div>
+
+  <!-- グローバルな audio 要素 -->
+  <audio id="audioPlayer" style="display: none;"></audio>
+
+  <!-- Scripts -->
+  <script src="correct_answers.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
